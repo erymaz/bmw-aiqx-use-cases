@@ -1,0 +1,28 @@
+<header class="container">
+  <a class="brand font-16" routerLink="/">{{ 'COMMON.TITLE' | translate }}</a>
+
+  <button mat-stroked-button class="ml-auto inform-btn">
+    <a href="mailto:info_AIQX@bmw.de" class="no-underline">{{ 'COMMON.GET_HELP' | translate }}</a>
+  </button>
+  <ng-container *ngIf="showRoleDropdown; else logoutBtn">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <span>{{ (authService.isRequestor ? 'USER.REQUESTOR' : 'USER.AIQX_TEAM') | translate }}</span>
+      <mat-icon class="ml-8 mi-16">expand_more</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button class="justify-content-end" mat-menu-item (click)="switchToRequestor()">
+        <mat-icon *ngIf="authService.isRequestor" class="ml-8 mi-16">check</mat-icon>
+        <span>{{ 'USER.REQUESTOR' | translate }}</span>
+      </button>
+      <button class="justify-content-end" mat-menu-item (click)="switchToAiqxTeam()">
+        <mat-icon *ngIf="authService.isAIQXTeam" class="ml-8 mi-16">check</mat-icon>
+        <span>{{ 'USER.AIQX_TEAM' | translate }}</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+  <ng-template #logoutBtn>
+    <button mat-button class="ml-10 logout-btn">
+      <a [href]="logoutUrl" class="no-underline">Logout</a>
+    </button>
+  </ng-template>
+</header>

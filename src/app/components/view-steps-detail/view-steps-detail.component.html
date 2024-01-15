@@ -1,0 +1,230 @@
+<div class="table-wrapper" *ngIf="control">
+  <div *ngIf="getFormControlValue() !== 'object'" class="text-view">
+    <span>{{ control.title | translate }}</span>
+    <span>{{ getFormControlValue() }}</span>
+  </div>
+
+  <div *ngIf="control.control === 'form.inspectionFeatureAvailable'" class="object-view">
+    <div class="title">{{ control.title | translate }}</div>
+    <fieldset>
+      <mat-radio-group
+        aria-label="Select an option"
+        [value]="getFormControlValueWithObject()?.value"
+        disabled
+      >
+        <mat-radio-button [value]="true">
+          {{ 'FORMS.DESCRIPTION.INSPECTION_FEATURE_AVAILABLE_TRUE' | translate }}
+        </mat-radio-button>
+        <mat-radio-button class="ml-80" [value]="false">
+          {{ 'FORMS.DESCRIPTION.INSPECTION_FEATURE_AVAILABLE_FALSE' | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </fieldset>
+  </div>
+
+  <div *ngIf="control.control === 'form.benefits'" class="object-view">
+    <div class="title">{{ control.title | translate }}</div>
+    <fieldset *ngFor="let field of fields | keyvalue: fieldsKeyvalueOrder">
+      <div class="d-flex flex-column">
+        <mat-checkbox color="primary" [disabled]="true" [checked]="findKey(field.key)" disabled>
+          <span>
+            {{ field.value.label | translate }}
+          </span>
+        </mat-checkbox>
+
+        <ng-container *ngIf="findKey(field.key)">
+          <mat-form-field
+            *ngFor="let subfield of field.value.subfields"
+            class="mt-8"
+            appearance="outline"
+            floatLabel="always"
+          >
+            <mat-label> {{ subfield.label | translate }}:</mat-label>
+            <input
+              matInput
+              [value]="getValue(field.key, subfield.name)"
+              [placeholder]="
+                subfield.placeholder || 'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate
+              "
+              readonly
+            />
+          </mat-form-field>
+        </ng-container>
+      </div>
+    </fieldset>
+  </div>
+
+  <div
+    *ngIf="
+      control.control === 'form.requestor' ||
+      control.control === 'form.planner' ||
+      control.control === 'form.psp' ||
+      control.control === 'form.qe' ||
+      control.control === 'form.section'
+    "
+    class="object-view"
+  >
+    <div class="title">{{ control.title | translate }}*</div>
+    <fieldset>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>{{ 'FORMS.PROJECT_PLANNING.NAME' | translate }}:</mat-label>
+        <input
+          matInput
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate"
+          [value]="getFormControlValueWithObject()?.name"
+          readonly
+        />
+      </mat-form-field>
+    </fieldset>
+
+    <fieldset>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>{{ 'FORMS.PROJECT_PLANNING.DEPARTMENT' | translate }}:</mat-label>
+        <input
+          matInput
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate"
+          [value]="getFormControlValueWithObject()?.department"
+          readonly
+        />
+      </mat-form-field>
+    </fieldset>
+
+    <fieldset *ngIf="getFormControlValueWithObject()?.informed">
+      <mat-checkbox color="primary" [checked]="getFormControlValueWithObject()?.informed" disabled>
+        {{ 'FORMS.PROJECT_PLANNING.INFORMED' | translate }}
+      </mat-checkbox>
+    </fieldset>
+
+    <fieldset *ngIf="getFormControlValueWithObject()?.function">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>{{ 'FORMS.PROJECT_PLANNING.FUNCTION' | translate }}:</mat-label>
+        <input
+          matInput
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate"
+          [value]="getFormControlValueWithObject()?.function?.name"
+          readonly
+        />
+      </mat-form-field>
+    </fieldset>
+  </div>
+
+  <div *ngIf="control.control === 'form.typeOfInspection'" class="object-view">
+    <div class="title">{{ control.title | translate }}</div>
+    <fieldset>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>
+          {{ 'FORMS.FEATURE_DEFINITION.TYPE_OF_INSPECTION' | translate }}
+          ({{ 'FORMS.DESCRIPTION.MULTIPLE_CHOICE_POSSIBLE' | translate }}):
+        </mat-label>
+        <mat-select
+          multiple
+          [value]="getFormControlValueWithObject()?.name"
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_CHOOSE' | translate"
+          disabled
+        >
+          <mat-option *ngFor="let option of typeOfInspectionOptions" [value]="option.value">
+            {{ option.label | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </fieldset>
+  </div>
+
+  <div *ngIf="control.control === 'form.positionInVehicle'" class="object-view">
+    <div class="title">{{ control.title | translate }}</div>
+    <fieldset>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>{{ 'FORMS.FEATURE_DEFINITION.POSITION_IN_VEHICLE' | translate }}:</mat-label>
+        <mat-select
+          required
+          [value]="getFormControlValueWithObject()?.name"
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_CHOOSE' | translate"
+          disabled
+        >
+          <mat-option *ngFor="let option of positionInVehicleOptions" [value]="option.value">
+            {{ option.label | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </fieldset>
+
+    <fieldset *ngIf="getFormControlValueWithObject()?.name === 'other'">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>{{ 'FORMS.FEATURE_DEFINITION.OTHER' | translate }}:</mat-label>
+        <input
+          matInput
+          required
+          [value]="getFormControlValueWithObject()?.value"
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate"
+        />
+      </mat-form-field>
+    </fieldset>
+  </div>
+
+  <div *ngIf="control.control === 'form.archivingImages'" class="object-view">
+    <div class="title">{{ control.title | translate }}</div>
+    <fieldset>
+      <mat-radio-group
+        aria-label="Select an option"
+        [value]="getFormControlValueWithObject()?.value"
+        disabled
+      >
+        <mat-radio-button [value]="true">{{ 'LABEL.YES' | translate }}</mat-radio-button>
+        <mat-radio-button class="ml-80" [value]="false">{{
+          'LABEL.NO' | translate
+        }}</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field
+        *ngIf="getFormControlValueWithObject()?.months"
+        appearance="outline"
+        floatLabel="always"
+        class="mt-20"
+      >
+        <mat-label> {{ 'FORMS.VARIANTS.ARCHIVING_IMAGES_DURATION' | translate }}:</mat-label>
+        <input
+          matInput
+          required
+          disabled
+          min="1"
+          mask="separator"
+          [decimalMarker]="'COMMON.DECIMAL_SEPARATOR' | translate"
+          [thousandSeparator]="'COMMON.THOUSAND_SEPARATOR' | translate"
+          [value]="getFormControlValueWithObject()?.months"
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate"
+        />
+      </mat-form-field>
+    </fieldset>
+  </div>
+
+  <div *ngIf="control.control === 'form.additionalLightingNecessary'" class="object-view">
+    <div class="title">{{ control.title | translate }}</div>
+    <fieldset>
+      <mat-radio-group
+        aria-label="Select an option"
+        [value]="getFormControlValueWithObject()?.value"
+        disabled
+      >
+        <mat-radio-button [value]="true">{{ 'LABEL.YES' | translate }}</mat-radio-button>
+        <mat-radio-button class="ml-80" [value]="false">{{
+          'LABEL.NO' | translate
+        }}</mat-radio-button>
+      </mat-radio-group>
+    </fieldset>
+
+    <fieldset *ngIf="getFormControlValueWithObject()?.value === true" class="mb-16">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>
+          {{ 'FORMS.USE_CASE_OFFER.DESCRIPTION_OF_LIGHTING_POSITIONING' | translate }}:
+        </mat-label>
+        <input
+          matInput
+          required
+          [value]="getFormControlValueWithObject()?.description"
+          [placeholder]="'FORMS.PLACEHOLDERS.PLEASE_SPECIFY' | translate"
+          disabled
+        />
+      </mat-form-field>
+    </fieldset>
+  </div>
+</div>

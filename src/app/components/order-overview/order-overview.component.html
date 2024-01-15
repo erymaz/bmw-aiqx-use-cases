@@ -1,0 +1,41 @@
+<div class="table-wrapper">
+  <ng-container *ngIf="formStep && init">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.USE_CASE_OFFER' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('order')]"
+        [queryParams]="{ 'tab-index': 0 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.ONE_TIME_COSTS' | translate }}</span>
+          <span>{{ calc.getOneTimeCost(formStep) }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.HARDWARE' | translate }}</span>
+          <span>{{ calc.getHardwareCostEstimation(formStep) }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.INSTALLATION' | translate }}</span>
+          <span>{{ calc.getInstallationCost(formStep) }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.IMPLEMENTATION' | translate }}</span>
+          <span>{{ calc.getImplementationCost(formStep) }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.YEARLY_COSTS' | translate }}</span>
+          <span>{{ calc.getYearlyCost(formStep) }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+</div>

@@ -1,0 +1,81 @@
+@import 'variables';
+
+.content-body {
+  width: 100% !important;
+}
+.table-wrapper {
+  width: 100%;
+}
+.mat-table {
+  display: block;
+  background-color: transparent;
+}
+.mat-row.detail-row {
+  height: 0;
+}
+.detail-element {
+  overflow: hidden;
+  display: flex;
+}
+
+.mat-header-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mat-header-cell,
+.mat-cell {
+  padding: 25px 3px 25px 3px;
+  &.mat-column-image {
+    flex: 0 0 90px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.mat-column-variant {
+    flex: 0 0 120px;
+  }
+
+  &.mat-column-criteria {
+    flex: 0 0 200px;
+  }
+
+  &.mat-column-description {
+    flex: 0 0 250px;
+  }
+
+  &.mat-column-imageCount {
+    flex: 0 0 90px;
+  }
+
+  &.mat-column-uploadAction {
+    flex: 0 0 90px;
+  }
+
+  &.mat-column-deleteAction {
+    flex: 0 0 40px;
+  }
+
+  &.mat-column-expandAction {
+    flex: 0 0 50px;
+  }
+}
+
+.delete-icon {
+  color: $red1;
+  font-size: 20px;
+}
+
+.field-container {
+  width: 100%;
+  padding-left: 90px;
+  padding-right: 40px;
+  background-color: white;
+  .variants-field {
+    border-bottom: solid 1px lightgray;
+
+    .img-container {
+      width: 90px;
+    }
+  }
+}

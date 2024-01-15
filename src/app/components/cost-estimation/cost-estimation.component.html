@@ -1,0 +1,43 @@
+<mat-grid-list *ngIf="offer && init" cols="2" rowHeight="45px">
+  <mat-grid-tile>
+    <h5>{{ 'FORMS.USE_CASE_OFFER.ONE_TIME_COSTS' | translate }}</h5>
+    <h5>
+      {{ calc.getOneTimeCost(offer) | mask: 'separator':('COMMON.THOUSAND_SEPARATOR' | translate)
+      }}{{ calc.currencySymbol }}
+    </h5>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="4">
+    <h5>{{ 'FORMS.USE_CASE_OFFER.YEARLY_COSTS' | translate }}</h5>
+    <h5>
+      {{ calc.getYearlyCost(offer) | mask: 'separator':('COMMON.THOUSAND_SEPARATOR' | translate)
+      }}{{ calc.currencySymbol }}
+    </h5>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>{{ 'FORMS.USE_CASE_OFFER.HARDWARE' | translate }}</div>
+    <div>
+      {{
+        calc.getHardwareCostEstimation(offer)
+          | mask: 'separator':('COMMON.THOUSAND_SEPARATOR' | translate)
+      }}{{ calc.currencySymbol }}
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>{{ 'FORMS.USE_CASE_OFFER.INSTALLATION' | translate }}</div>
+    <div>
+      {{
+        calc.getInstallationCost(offer)
+          | mask: 'separator':('COMMON.THOUSAND_SEPARATOR' | translate)
+      }}{{ calc.currencySymbol }}
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>{{ 'FORMS.USE_CASE_OFFER.IMPLEMENTATION' | translate }}</div>
+    <div>
+      {{
+        calc.getImplementationCost(offer)
+          | mask: 'separator':('COMMON.THOUSAND_SEPARATOR' | translate)
+      }}{{ calc.currencySymbol }}
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,156 @@
+<div class="table-wrapper">
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.VARIANT' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('variants')]"
+        [queryParams]="{ 'tab-index': 0 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <app-variants-table
+            [attachments]="attachments"
+            [variants]="variants"
+            style="width: 100%"
+          ></app-variants-table>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.CAMERA_LOCATION' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('camera_location')]"
+        [queryParams]="{ 'tab-index': 1 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.CAMERA_LOCATION.MECHANICAL_STRUCTURE_FOR_CAMERA' | translate }}</span>
+          <span>{{ (formStep.mechanicalStructure ? 'LABEL.YES' : 'LABEL.NO') | translate }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.INFRASTRUCTURE' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('infrastructure')]"
+        [queryParams]="{ 'tab-index': 2 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.INFRASTRUCTURE.NSI_SOCKET_AVAILABLE' | translate }}</span>
+          <span>{{ (formStep.nsiSocketAvailable ? 'LABEL.YES' : 'LABEL.NO') | translate }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.INFRASTRUCTURE.POWER_AVAILABLE' | translate }}</span>
+          <span>{{ (formStep.powerAvailable ? 'LABEL.YES' : 'LABEL.NO') | translate }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.INFRASTRUCTURE.POE_AVAILABLE' | translate }}</span>
+          <span>{{ (formStep.poeAvailable ? 'LABEL.YES' : 'LABEL.NO') | translate }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.DETAILS' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('details')]"
+        [queryParams]="{ 'tab-index': 3 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.TECHNICAL_TACT' | translate }}</span>
+          <span>{{ (formStep.technicalTact ? 'LABEL.YES' : 'LABEL.NO') | translate }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.ANONYMIZATION_NECESSARY' | translate }}</span>
+          <span>{{
+            (formStep.anonymizationNecessary ? 'LABEL.YES' : 'LABEL.NO') | translate
+          }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.ARCHIVING_IMAGES' | translate }}</span>
+          <span>{{
+            (formStep?.archivingImages?.value ? 'LABEL.YES' : 'LABEL.NO') | translate
+          }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.EMERGENCY_CONCEPT' | translate }}</span>
+          <span>{{ (formStep.emergencyConcept ? 'LABEL.YES' : 'LABEL.NO') | translate }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.SYSTEM_CONFIGURATION' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('system_configuration')]"
+        [queryParams]="{ 'tab-index': 4 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.ORDER_DATA' | translate }}</span>
+          <span>{{ formStep?.orderData?.value }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.TRIGGER' | translate }}</span>
+          <span>{{ formStep?.trigger?.value }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.VARIANTS.VALIDATION_RESULT' | translate }}</span>
+          <span>{{ formStep?.validationResult?.value }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+</div>

@@ -1,0 +1,25 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.toolbar-container {
+  display: flex;
+  background-color: $gray12;
+  align-items: baseline;
+
+  padding: 32px 120px 30px 120px;
+
+  app-search {
+    display: block;
+    width: 340px;
+  }
+}
+
+.table-container {
+  display: flex;
+  flex-grow: 1;
+}

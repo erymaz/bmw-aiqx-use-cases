@@ -1,0 +1,23 @@
+@import 'variables';
+@import 'tools';
+
+.table-wrapper {
+  flex-grow: 1;
+
+  .text-view {
+    display: flex;
+    span:first-of-type {
+      font-weight: 600;
+      flex: 0 0 40%;
+    }
+  }
+
+  .object-view {
+    margin: 10px 0;
+    .title {
+      margin: 10px 0;
+      font-weight: 600;
+      flex: 0 0 40%;
+    }
+  }
+}

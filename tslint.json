@@ -1,0 +1,9 @@
+{
+  "extends": "@elunic/ecs-tslint/tslint-angular10.json",
+  "rules": {
+    "deprecation": {
+      "severity": "warning"
+    },
+    "array-type": [true, "array"]
+  }
+}

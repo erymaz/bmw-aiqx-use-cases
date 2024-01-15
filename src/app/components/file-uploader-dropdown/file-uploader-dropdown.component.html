@@ -1,0 +1,25 @@
+<div class="file-uploader-dropdown d-flex flex-column justify-content-center align-items-center">
+  <ngx-file-drop
+    accept="image/*"
+    dropZoneLabel="Drop files here"
+    (onFileDrop)="onDroppedFiles($event)"
+    [disabled]="isDisabled"
+  >
+    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <span> Drag and drop images here </span>
+        <span> or </span>
+        <button
+          [disabled]="isDisabled"
+          mat-flat-button
+          class="mt-24"
+          color="primary"
+          type="button"
+          (click)="openFileSelector()"
+        >
+          <span>Click here</span>
+        </button>
+      </div>
+    </ng-template>
+  </ngx-file-drop>
+</div>

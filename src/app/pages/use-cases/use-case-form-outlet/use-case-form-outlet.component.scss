@@ -1,0 +1,54 @@
+@import 'variables';
+@import 'tools';
+
+.page-container {
+  display: flex;
+  background-color: $gray12;
+  // Enable this to fix page size.
+  // height: calc(100vh - 120px);
+
+  .content-container {
+    position: relative;
+    width: 100%;
+
+    app-breadcrumb {
+      max-width: 25%;
+    }
+
+    .content-main {
+      @include custom-scrollbar;
+      // Enable this to fix page size.
+      // max-height: 65vh;
+      max-height: 78vh;
+      overflow-y: auto;
+      margin: 16px;
+      padding: 12px;
+    }
+
+    .content-footer {
+      display: flex;
+      margin-top: auto;
+    }
+  }
+}
+
+.mat-flat-button.mat-primary.mat-button-disabled {
+  background-color: $blue1;
+  color: white;
+  opacity: 0.3;
+}
+
+.decline-btn {
+  background-color: #c00000;
+  color: #fff;
+}
+
+.green-btn {
+  background-color: #1aab24;
+  color: #fff;
+}
+
+.blue-btn {
+  background-color: #1c69d4;
+  color: #fff;
+}

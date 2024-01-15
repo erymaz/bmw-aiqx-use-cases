@@ -1,0 +1,116 @@
+<div class="table-wrapper">
+  <ng-container *ngIf="formStep && init">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.FEASIBILITY_CHECK' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="[
+          '/use-cases',
+          'edit',
+          useCase.id,
+          getStepUrl('implementation_feasibility_check')
+        ]"
+        [queryParams]="{ 'tab-index': 0 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.IMPLEMENTATION_FEASIBILITY_CHECK.USE_CASE_FEASIBLE' | translate }}</span>
+          <span>{{
+            (formStep?.implementationFeasibilityCheck?.value ? 'LABEL.YES' : 'LABEL.NO') | translate
+          }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.COMPLEXITY_DEFINITION' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('complexity_definition')]"
+        [queryParams]="{ 'tab-index': 1 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.COMPLEXITY_FOR_DATA_SCIENCE' | translate }}</span>
+          <span>{{ formStep.complexityForDataScience }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.COMPLEXITY_FOR_PLATFORM' | translate }}</span>
+          <span>{{ formStep.complexityForBusiness }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{
+            'FORMS.USE_CASE_OFFER.OFFERABLE_TIMELINE_FOR_IMPLEMENTATION' | translate
+          }}</span>
+          <span>{{ formStep.timelineForImplementation | date: 'shortDate' }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="formStep">
+    <div class="d-flex align-items-center mb-16">
+      <span>
+        {{ 'FORMS.TITLES.HARDWARE_COST_DEFINITION' | translate }}
+      </span>
+      <a
+        class="ml-auto font-bold text-decoration-none"
+        [routerLink]="['/use-cases', 'edit', useCase.id, getStepUrl('camera_position_definition')]"
+        [queryParams]="{ 'tab-index': 2 }"
+      >
+        {{ 'USE_CASE.VIEW_FORM' | translate }}
+      </a>
+    </div>
+
+    <mat-card class="card-info">
+      <mat-list>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.CAMERA_NECESSARY' | translate }}</span>
+          <span>{{
+            (formStep?.cameraNecessary?.value ? 'LABEL.YES' : 'LABEL.NO') | translate
+          }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.EDGE_DEVICE_NECESSARY' | translate }}</span>
+          <span>{{
+            (formStep?.edgeDeviceNecessary?.value ? 'LABEL.YES' : 'LABEL.NO') | translate
+          }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.ADDITIONAL_LIGHTING_NECESSARY' | translate }}</span>
+          <span>{{
+            (formStep?.additionalLightingNecessary?.value ? 'LABEL.YES' : 'LABEL.NO') | translate
+          }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.HARDWARE_COST_ESTIMATION' | translate }}</span>
+          <span>{{ formStep.hardwareCostEstimation }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.INSTALLATION_COST' | translate }}</span>
+          <span>{{ formStep.installationCost }}{{ calc.currencySymbol }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span>{{ 'FORMS.USE_CASE_OFFER.NUMBER_OF_PICTURES_TAKEN_PER_VEHICLE' | translate }}</span>
+          <span>{{ formStep.numberOfPicturesTakenPerVehicle }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+</div>

@@ -1,0 +1,44 @@
+@import 'variables';
+
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 60px;
+  background-color: $gray3;
+  color: $gray13;
+
+  .brand {
+    color: $gray13;
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: $gray8;
+    }
+  }
+
+  .inform-btn {
+    border: 1px white solid;
+    line-height: 24px;
+    a {
+      color: white;
+    }
+  }
+
+  .logout-btn {
+    background: white;
+    line-height: 24px;
+    a {
+      color: $gray3;
+    }
+  }
+}
